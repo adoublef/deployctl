@@ -25,6 +25,7 @@ SUBCOMMANDS:
     deploy    Deploy a script with static files to Deno Deploy
     upgrade   Upgrade deployctl to the given version (defaults to latest)
     logs      View logs for the given project
+    env       Manage Deploy environment variables 
 `;
 
 if (!semverGreaterThanOrEquals(Deno.version.deno, MINIMUM_DENO_VERSION)) {
@@ -88,7 +89,7 @@ switch (subcommand) {
   case "logs":
     await logsSubcommand(args);
     break;
-  case "secrets":
+  case "env":
     await envSubcommand(args);
     break;
   default:
