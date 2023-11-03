@@ -80,12 +80,11 @@ async function env(opts: SecretsOpts) {
     envSpinner.succeed(
       "A new production deployment with the updated environment variables has been made.",
     );
-  } catch (err) {
-    envSpinner.fail("Failed to update environment variables");
+  } catch (err: unknown) {
     if (err instanceof APIError) {
+      envSpinner.fail("Failed to update environment variables");
       error(err.toString());
-    } else {
-      throw err;
     }
+    error(String(err));
   }
 }
