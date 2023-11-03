@@ -78,7 +78,7 @@ async function env(opts: SecretsOpts) {
   try {
     await api.setEnvs(project!.id, opts.envVars);
     envSpinner.succeed(
-      "A new production deployment will be created automatically with the new environment variables when you next push your code.",
+      "A new production deployment with the updated environment variables has been made.",
     );
   } catch (err) {
     envSpinner.fail("Failed to update environment variables");
