@@ -49,8 +49,15 @@ export default async function (rawArgs: Record<string, any>): Promise<void> {
     error("Missing project ID.");
   }
 
+  let envVars = {};
+  try {
+    envVars = parsePairs(rawArgs._);
+  } catch (e) {
+    error(e);
+  }
+
   const opts = {
-    envVars: await parsePairs(rawArgs._).catch((e) => error(e)),
+    envVars,
     token,
     project: args.project,
   };
